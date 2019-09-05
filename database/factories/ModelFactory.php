@@ -3,6 +3,7 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 use App\Loan;
 use App\User;
+use App\Wallet;
 use App\Tranche;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
