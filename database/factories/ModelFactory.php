@@ -30,9 +30,9 @@ $factory->define(User::class, function (Faker $faker) {
 
 $factory->define(Loan::class, function (Faker $faker) {
     return [
-        'amount' => 10000,
         'start' => $faker->dateTime(),
         'end' => $faker->dateTime(),
+        'maximum' => 10000,
     ];
 });
 

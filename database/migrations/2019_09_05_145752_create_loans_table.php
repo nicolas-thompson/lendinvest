@@ -15,9 +15,9 @@ class CreateLoansTable extends Migration
     {
         Schema::create('loans', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('amount');
             $table->dateTime('start');
             $table->dateTime('end');
+            $table->integer('maximum');
             $table->timestamps();
         });
     }
@@ -29,6 +29,14 @@ class CreateLoansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('loans');
+        Schema::table('loans', function (Blueprint $table) {
+            $table->dropColumn(start);
+        });
+        Schema::table('loans', function (Blueprint $table) {
+            $table->dropColumn(end);
+        });
+        Schema::table('loans', function (Blueprint $table) {
+            $table->dropColumn(maximun);
+        });
     }
 }
