@@ -6,9 +6,25 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tranche extends Model
 {
+
+    // balance mutator 
+    //
+    // - https://laravel.com/docs/6.0/eloquent-mutators
+    public function getBalanceAttribute($value)
+    {
+        return $value / 100;
+    }
+
+    public function open() : bool
+    {
+        return $this->open;
+    }
+
     public function invest(Wallet $wallet, $amount)
     {
-        dd($this->loan->open());
+       if ($this->canInvest($wallet, $amount)) {
+           dd('invest here');
+       }
     }
 
     public function loan()
