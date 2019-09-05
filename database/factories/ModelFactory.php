@@ -3,6 +3,7 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 use App\Loan;
 use App\User;
+use App\Tranche;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
@@ -32,5 +33,13 @@ $factory->define(Loan::class, function (Faker $faker) {
         'amount' => 10000,
         'start' => $faker->dateTime(),
         'end' => $faker->dateTime(),
+    ];
+});
+
+$factory->define(Tranche::class, function (Faker $faker) {
+    return [
+        'open' => true,
+        'rate' => 3,
+        'maximum' => 10000,
     ];
 });
