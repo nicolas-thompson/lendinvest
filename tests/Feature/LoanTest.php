@@ -40,4 +40,15 @@ class LoanTest extends TestCase
         $this->assertEquals($loan->start, '01/10/2015');
         $this->assertEquals($loan->end, '15/11/2015');
     }
+
+    /** @test */
+    public function given_the_loan_has_two_tranches_called_a_and_b()
+    {
+        $loan = factory('App\Loan')->create();
+
+        $trancheA = factory('App\Tranche')->create(['loan_id' => $loan->id]);
+        $trancheB = factory('App\Tranche')->create(['loan_id' => $loan->id]);
+        
+        $this->assertCount(1, $loan->tranche);
+    }
 }  
