@@ -15,4 +15,22 @@ class Tranche extends Model
     {
         return $this->belongsTo('App\Loan');
     }
+
+    public function canInvest($wallet, $amount) : bool
+    {
+        if($wallet->balance < $amount) {
+            return false;
+        }
+
+        if($amount > $this->balance) {
+            return false;
+        }
+
+        if ($this->open() && $this->loan->open()) {
+            return true;
+        }
+
+        return false;
+    }
+
 }
