@@ -20,7 +20,7 @@ class LoanTest extends TestCase
     }
 
     /** @test */
-    public function and_a_loan_has_a_tranche()
+    public function a_loan_has_a_tranche()
     {
         $loan = factory('App\Loan')->create();
         
@@ -30,7 +30,7 @@ class LoanTest extends TestCase
     }
 
     /** @test */
-    public function given_a_loan_start_first_october_twenty_fifteen_end_fifteenth_november_twenty_fifteen()
+    public function a_loan_start_first_october_twenty_fifteen_end_fifteenth_november_twenty_fifteen()
     {
         $loan = factory('App\Loan')->create([
             'start' => '01/10/2015',
@@ -42,7 +42,7 @@ class LoanTest extends TestCase
     }
 
     /** @test */
-    public function given_the_loan_has_two_tranches_called_a_and_b()
+    public function a_loan_has_two_tranches_called_a_and_b()
     {
         $loan = factory('App\Loan')->create();
 
@@ -53,7 +53,7 @@ class LoanTest extends TestCase
     }
 
     /** @test */
-    public function given_trancheA_has_an_interest_rate_of_3_percent()
+    public function trancheA_has_an_interest_rate_of_3_percent()
     {
         $trancheA = factory('App\Tranche')->create(['rate' => 3]);
 
@@ -61,10 +61,21 @@ class LoanTest extends TestCase
     }
 
     /** @test */
-    public function given_trancheB_has_an_interest_rate_of_6_percent()
+    public function trancheB_has_an_interest_rate_of_6_percent()
     {
         $trancheB = factory('App\Tranche')->create(['rate' => 6]);
 
         $this->assertEquals(6, $trancheB->rate);
     }
+
+    /** @test */
+    public function each_tranche_has_maximum_one_thousand()
+    {
+        $trancheA = factory('App\Tranche')->create(['maximum' => 100000]);
+        $trancheB = factory('App\Tranche')->create(['maximum' => 100000]);
+
+        $this->assertEquals(100000, $trancheA->maximum);
+        $this->assertEquals(100000, $trancheB->maximum);
+    }
+
 }  
