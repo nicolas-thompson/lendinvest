@@ -43,6 +43,7 @@ $factory->define(Tranche::class, function (Faker $faker) {
         'open' => true,
         'loan_id' => 1,
         'rate' => 3,
+        'balance' => 100000,
         'maximum' => 100000,
     ];
 });

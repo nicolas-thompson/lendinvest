@@ -18,6 +18,7 @@ class CreateTranchesTable extends Migration
             $table->integer('loan_id');
             $table->boolean('open');
             $table->integer('rate');
+            $table->integer('balance');
             $table->integer('maximum');
             $table->timestamps();
         });
