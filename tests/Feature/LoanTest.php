@@ -51,4 +51,12 @@ class LoanTest extends TestCase
         
         $this->assertCount(2, $loan->tranche);
     }
+
+    /** @test */
+    public function given_trancheA_has_an_interest_rate_of_3_percent()
+    {
+        $trancheA = factory('App\Tranche')->create(['rate' => 3]);
+
+        $this->assertEquals(3, $trancheA->rate);
+    }
 }  
