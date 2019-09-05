@@ -61,7 +61,7 @@ class LoanTest extends TestCase
     }
 
     /** @test */
-    public function given_trancheB_has_an_interest_rate_of_3_percent()
+    public function given_trancheB_has_an_interest_rate_of_6_percent()
     {
         $trancheB = factory('App\Tranche')->create(['rate' => 6]);
 
