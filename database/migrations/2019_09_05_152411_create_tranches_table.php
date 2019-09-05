@@ -15,6 +15,7 @@ class CreateTranchesTable extends Migration
     {
         Schema::create('tranches', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('loan_id');
             $table->boolean('open');
             $table->integer('rate');
             $table->integer('maximum');

@@ -39,6 +39,7 @@ $factory->define(Loan::class, function (Faker $faker) {
 $factory->define(Tranche::class, function (Faker $faker) {
     return [
         'open' => true,
+        'loan_id' => 1,
         'rate' => 3,
         'maximum' => 10000,
     ];
