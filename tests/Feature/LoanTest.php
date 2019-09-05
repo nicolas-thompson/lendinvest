@@ -16,6 +16,6 @@ class LoanTest extends TestCase
         $loan = factory('App\Loan')->create();
         
         // given we have a loan
-        $this->assertInstanceOf('Loan', $loan);
+        $this->assertInstanceOf('App\Loan', $loan);
     }
 }  
