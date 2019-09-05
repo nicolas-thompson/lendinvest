@@ -28,4 +28,16 @@ class LoanTest extends TestCase
 
         $this->assertEquals($tranche->id, $loan->tranche->first()->id);
     }
+
+    /** @test */
+    public function given_a_loan_start_first_october_twenty_fifteen_end_fifteenth_november_twenty_fifteen()
+    {
+        $loan = factory('App\Loan')->create([
+            'start' => '01/10/2015',
+            'end' => '15/11/2015',
+        ]);
+
+        $this->assertEquals($loan->start, '01/10/2015');
+        $this->assertEquals($loan->end, '15/11/2015');
+    }
 }  
