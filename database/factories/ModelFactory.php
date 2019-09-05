@@ -32,7 +32,7 @@ $factory->define(Loan::class, function (Faker $faker) {
     return [
         'start' => $faker->dateTime(),
         'end' => $faker->dateTime(),
-        'maximum' => 10000,
+        'maximum' => 100000,
     ];
 });
 
@@ -41,6 +41,15 @@ $factory->define(Tranche::class, function (Faker $faker) {
         'open' => true,
         'loan_id' => 1,
         'rate' => 3,
-        'maximum' => 10000,
+        'maximum' => 100000,
+    ];
+});
+
+$factory->define(Wallet::class, function (Faker $faker) {
+    return [
+        'user_id' => 1,
+        'balance' => 100000,
+        'rate' => 3,
+        'maximum' => 100000,
     ];
 });
