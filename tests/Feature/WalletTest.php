@@ -17,6 +17,6 @@ class WalletTest extends TestCase
 
         factory('App\Wallet')->create(['user_id' => $investor->id]);
 
-        $this->assertEquals(1000, $investor->wallet->balance / 100);
+        $this->assertEquals(1000, $investor->wallet->balance);
     }
 }
