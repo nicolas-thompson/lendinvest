@@ -14,9 +14,9 @@ class UserTest extends TestCase
     public function a_user_has_a_wallet()
     {
         $user = factory('App\User')->create();
-        
-        factory('App\Wallet')->create(['user_id' => $user->id]);
 
-        $this->assertInstanceOf('App\Wallet', $user->wallets);
+        $wallet = factory('App\Wallet')->create(['user_id' => $user->id]);
+
+        $this->assertInstanceOf('App\Wallet', $user->wallet);
     }
 }
