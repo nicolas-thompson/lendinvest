@@ -49,6 +49,6 @@ class LoanTest extends TestCase
         $trancheA = factory('App\Tranche')->create(['loan_id' => $loan->id]);
         $trancheB = factory('App\Tranche')->create(['loan_id' => $loan->id]);
         
-        $this->assertCount(1, $loan->tranche);
+        $this->assertCount(2, $loan->tranche);
     }
 }  
