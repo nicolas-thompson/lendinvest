@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
+use Carbon\CarbonImmutable;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -27,9 +28,12 @@ class WalletTest extends TestCase
 
         factory('App\Wallet')->create(['user_id' => $investor->id]);
 
+        $start = CarbonImmutable::createFromDate('09/01/2019', 'Europe/London');
+        $end = CarbonImmutable::createFromDate('10/01/2019', 'Europe/London');
+
         $loan = factory('App\Loan')->create([
-            'start' => '01/10/2015',
-            'end' => '15/11/2015',
+            'start' => $start,
+            'end' => $end,
         ]);
 
         $tranche = factory('App\Tranche')->create(['loan_id' => $loan->id]);
