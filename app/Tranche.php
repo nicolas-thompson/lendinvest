@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tranche extends Model
 {
-    public function canInvest($wallet, $amount) : bool
+    public function canInvest($wallet, $amount, $now) : bool
     {
         if($wallet->balance < $amount) {
             return false;
@@ -15,7 +15,7 @@ class Tranche extends Model
             return false;
         }
         
-        if ($this->open() && $this->loan->open()) {
+        if ($this->open() && $this->loan->open($now)) {
             return true;
         }
 
@@ -28,9 +28,9 @@ class Tranche extends Model
         return $this->save();
     }
 
-    public function invest(Wallet $wallet, $amount)
+    public function invest(Wallet $wallet, $amount, $now = null)
     {
-       if ($this->canInvest($wallet, $amount)) {
+       if ($this->canInvest($wallet, $amount, $now)) {
            $this->debitBalance($amount);
            $wallet->debitBalance($amount);
        }
