@@ -2,14 +2,21 @@
 
 namespace App;
 
+use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
 
 class Loan extends Model
 {
-
-    public function open() : bool
+    public function open($now = null) : bool
     {
-        return $this->open;
+        $now = $now ?? CarbonImmutable::now('Europe/London');
+
+        if ($now->greaterThan($this->start) && $now->lessThan($this->end)) {
+
+            return true;
+        }
+
+        return false;
     }
 
     public function tranche()
