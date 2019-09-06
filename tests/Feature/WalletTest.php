@@ -34,6 +34,8 @@ class WalletTest extends TestCase
 
         $tranche = factory('App\Tranche')->create(['loan_id' => $loan->id]);
 
-        $tranche->invest($investor->wallet, $amount = 1000);
+        $tranche->invest($investor->wallet, $amount = 100000);
+
+        $this->assertEquals(0, $investor->wallet->balance);
     }
 }

@@ -8,14 +8,13 @@ class Tranche extends Model
 {
     public function canInvest($wallet, $amount) : bool
     {
-        if($wallet->getOriginal('balance') < $amount) {
+        if($wallet->balance < $amount) {
             return false;
         }
-
         if($amount > $this->balance) {
             return false;
         }
-
+        
         if ($this->open() && $this->loan->open()) {
             return true;
         }
@@ -26,12 +25,7 @@ class Tranche extends Model
     public function debitBalance($amount)
     {
         $this->balance = $this->balance - $amount;
-        $this->save();
-    }
-
-    public function getBalanceAttribute($value) : int
-    {
-        return $value / 100;
+        return $this->save();
     }
 
     public function invest(Wallet $wallet, $amount)
