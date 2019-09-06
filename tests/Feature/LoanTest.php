@@ -2,7 +2,9 @@
 
 namespace Tests\Feature;
 
+use Carbon\Carbon;
 use Tests\TestCase;
+use Carbon\CarbonImmutable;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -76,6 +78,21 @@ class LoanTest extends TestCase
 
         $this->assertEquals(100000, $trancheA->maximum);
         $this->assertEquals(100000, $trancheB->maximum);
+    }
+
+    /** @test */
+    public function it_is_closed_if_now_is_not_between_start_and_end_date()
+    {
+        $start = CarbonImmutable::createFromDate('10/01/2015', 'Europe/London');
+        $now = CarbonImmutable::createFromDate('11/06/2015', 'Europe/London');
+        $end = CarbonImmutable::createFromDate('11/15/2015', 'Europe/London');
+
+        $loan = factory('App\Loan')->create([
+            'start' => $start,
+            'end' => $end,
+        ]);
+
+        $this->assertEquals(true, $loan->open($now));
     }
 
 }  
