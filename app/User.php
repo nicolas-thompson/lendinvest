@@ -37,11 +37,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    
-    /**
-     * Relationships
-     */
-
     public function wallet()
     {
         return $this->hasOne('App\Wallet');
