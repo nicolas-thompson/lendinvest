@@ -8,7 +8,7 @@ class Tranche extends Model
 {
     public function canInvest($wallet, $amount) : bool
     {
-        if($wallet->balance < $amount) {
+        if($wallet->getOriginal('balance') < $amount) {
             return false;
         }
 
