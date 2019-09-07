@@ -44,15 +44,19 @@ class TrancheTest extends TestCase
         factory('App\Wallet')->create(['user_id' => $investor1->id]);
         factory('App\Wallet')->create(['user_id' => $investor2->id]);
 
-        if ($tranche->canInvest($investor1->wallet, $amount = 100000, $now)) {
+        $canInvest = $tranche->canInvest($investor1->wallet, $amount = 100000, $now);
+
+        if ( $canInvest->status() === 200 ) {
 
             $tranche->invest($investor1->wallet, $amount = 100000, $now);
-        }
+        } 
 
         $this->assertEquals(0, $investor1->wallet->balance);
         $this->assertEquals(0, $tranche->balance);
 
-        if($tranche->canInvest($investor2->wallet, $amount = 100000, $now)) {
+        $canInvest = $tranche->canInvest($investor2->wallet, $amount = 100000, $now);
+
+        if( $canInvest->status() === 200 ) {
 
             $tranche->invest($investor2->wallet, $amount = 100000, $now);
         }
