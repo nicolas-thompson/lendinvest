@@ -55,3 +55,13 @@ $factory->define(Wallet::class, function (Faker $faker) {
         'balance' => 100000,
     ];
 });
+
+$factory->define(Transaction::class, function (Faker $faker) {
+    return [
+        'user_id' => 1,
+        'amount' => 0,
+        'type' => 'credit',
+        'balance' => 100000,
+        'tranche_id' => 1,
+    ];
+});
