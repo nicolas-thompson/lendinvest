@@ -5,6 +5,7 @@ use App\Loan;
 use App\User;
 use App\Wallet;
 use App\Tranche;
+use Carbon\CarbonImmutable;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
@@ -32,8 +33,8 @@ $factory->define(User::class, function (Faker $faker) {
 $factory->define(Loan::class, function (Faker $faker) {
     return [
         'open' => true,
-        'start' => $faker->dateTime(),
-        'end' => $faker->dateTime(),
+        'start' => CarbonImmutable::now(),
+        'end' => CarbonImmutable::now()->addMonths(1),
         'maximum' => 100000,
     ];
 });

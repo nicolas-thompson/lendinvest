@@ -94,5 +94,4 @@ class LoanTest extends TestCase
 
         $this->assertEquals(true, $loan->open($now));
     }
-
 }  
