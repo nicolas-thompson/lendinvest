@@ -11,10 +11,11 @@ class Tranche extends Model
         if($wallet->balance < $amount) {
             return false;
         }
+        
         if($amount > $this->balance) {
             return false;
         }
-        
+
         if ($this->open() && $this->loan->open($now)) {
             return true;
         }
@@ -30,10 +31,8 @@ class Tranche extends Model
 
     public function invest(Wallet $wallet, $amount, $now = null)
     {
-       if ($this->canInvest($wallet, $amount, $now)) {
-           $this->debitBalance($amount);
-           $wallet->debitBalance($amount);
-       }
+        $this->debitBalance($amount);
+        $wallet->debitBalance($amount);
     }
 
     public function loan() : object 
