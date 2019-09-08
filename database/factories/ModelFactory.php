@@ -33,8 +33,8 @@ $factory->define(User::class, function (Faker $faker) {
 $factory->define(Loan::class, function (Faker $faker) {
     return [
         'open' => true,
-        'start' => CarbonImmutable::now(),
-        'end' => CarbonImmutable::now()->addMonths(1),
+        'start' => CarbonImmutable::now()->startOfMonth(),
+        'end' => CarbonImmutable::now()->endOfMonth(),
         'maximum' => 100000,
     ];
 });
