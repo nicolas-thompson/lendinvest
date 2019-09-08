@@ -5,6 +5,7 @@ use App\Loan;
 use App\User;
 use App\Wallet;
 use App\Tranche;
+use App\Transaction;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
@@ -61,7 +62,7 @@ $factory->define(Transaction::class, function (Faker $faker) {
         'user_id' => 1,
         'amount' => 0,
         'type' => 'credit',
-        'balance' => 100000,
+        'amount' => 100000,
         'tranche_id' => 1,
     ];
 });
