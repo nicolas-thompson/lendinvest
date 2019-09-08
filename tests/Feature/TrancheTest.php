@@ -95,10 +95,6 @@ class TrancheTest extends TestCase
             $tranche->invest($investor->wallet, $amount = 20000);
         }
         
-        $start = CarbonImmutable::createFromDate('09/01/2019', 'Europe/London');
-        $now = CarbonImmutable::createFromDate('11/06/2015', 'Europe/London');
-        $end = CarbonImmutable::createFromDate('10/15/2019', 'Europe/London');
-
         $interest = $tranche->interest($investor);
                        
         $this->assertEquals('€'.'72', '€'.$interest->content());
