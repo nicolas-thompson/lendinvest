@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
+use App\Transaction;
 use Carbon\CarbonImmutable;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -63,5 +64,43 @@ class TrancheTest extends TestCase
 
         $this->assertEquals(100000, $investor2->wallet->balance);
         $this->assertEquals(0, $tranche->balance);
+    }
+
+    /** @test */
+    public function calculate_monthly_interest()
+    {
+        $investor = factory('App\User')->create();
+
+        $wallet = factory('App\Wallet')->create([
+            'user_id' => $investor->id
+            ]);
+
+        $loan = factory('App\Loan')->create();
+        $tranche = factory('App\Tranche')->create([
+            'loan_id' => $loan->id,
+            'rate' => 3,
+        ]);
+
+        $canInvest = $tranche->canInvest($wallet, $amount = 50000);
+
+        if ($canInvest->status() === 200) {
+            
+            $tranche->invest($investor->wallet, $amount = 50000);
+        }
+
+        $canInvest = $tranche->canInvest($wallet, $amount = 20000);
+
+        if ($canInvest->status() === 200) {
+            
+            $tranche->invest($investor->wallet, $amount = 20000);
+        }
+        
+        $start = CarbonImmutable::createFromDate('09/01/2019', 'Europe/London');
+        $now = CarbonImmutable::createFromDate('11/06/2015', 'Europe/London');
+        $end = CarbonImmutable::createFromDate('10/15/2019', 'Europe/London');
+
+        $interest = $tranche->interest($investor);
+                       
+        $this->assertEquals('€'.'72', '€'.$interest->content());
     }
 }
