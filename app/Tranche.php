@@ -46,6 +46,8 @@ class Tranche extends Model
     {
         $this->debitBalance($amount);
         $wallet->debitBalance($amount);
+
+        Transaction::store($wallet, $amount, 'credit', $this->id);
     }
 
     public function loan() : object 
