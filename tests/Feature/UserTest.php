@@ -19,4 +19,28 @@ class UserTest extends TestCase
 
         $this->assertInstanceOf('App\Wallet', $user->wallet);
     }
+
+    /** @test */
+    public function calculate_monthly_accrued_interest_command()
+    {
+        $investor = factory('App\User')->create();
+
+        $loan = factory('App\Loan')->create();
+        
+        $tranche =  factory('App\Tranche')->create([
+            'loan_id' => $loan->id,
+        ]);
+
+       factory('App\Transaction')->create([
+            'tranche_id' => $tranche->id,
+        ]);
+
+        $this->artisan('lendinvest:calculate-interest');
+
+        $this->assertDatabaseHas('interests', [
+            'id' => 1,
+            'user_id' => $investor->id,
+            'tranche_id' => $tranche->id,
+        ]);
+    }
 }
