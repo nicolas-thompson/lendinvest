@@ -97,6 +97,6 @@ class TrancheTest extends TestCase
         
         $interest = $tranche->interest($investor);
                        
-        $this->assertEquals('€'.'72', '€'.$interest->content());
+        $this->assertEquals('€'.'70', '€'.$interest->content());
     }
 }
