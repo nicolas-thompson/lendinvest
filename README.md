@@ -14,7 +14,7 @@ $ vendor/bin/phpunit
 
 ## Goals
 
-- Each loan has a start date and anend date
+- Each loan has a start date and an end date
 - Each loan is split in multiple tranches
 - Each tranche has a different monthly interest percentage
 - Each tranche has a maximum amount available to invest, 
